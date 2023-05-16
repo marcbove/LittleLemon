@@ -21,3 +21,15 @@ def book(request):
             form.save()
     context = {'form':form}
     return render(request, 'book.html', context)
+
+
+def menu(request):
+    menu_data = Menu.objects.all()
+    main_data = {'menu': menu_data}
+
+    return render(request, 'menu.html', main_data)
+
+
+def display_menu_item(request, pk=None):
+    menu_item_data = Menu.objects.get(pk=pk) if pk else ''
+    return render(request=request, template_name='menu_item.html', context={'menu_item': menu_item_data})
